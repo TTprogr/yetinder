@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hodnocení yetiho{% endblock %}
+
+{% block body %}
+    <h2>Hodnocení yetiho {{ yeti.jmeno }}</h2>
+    <div class="mb-3 form-check form-label form-text col-form-label col-sm-2 form-control-lg">
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+     </div>
+     <a href="{{path("filter")}}" class="btn btn-primary">Další Yeti</a>
+    {% for success in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ success }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

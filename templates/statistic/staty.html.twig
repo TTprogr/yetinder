@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <html>
+    <head>
+        <title>Statistika</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <canvas id="yetiChart" width="200" height="200"></canvas>
+        <script>
+            var ctx = document.getElementById('yetiChart').getContext('2d');
+            var data = {{ data|raw }};
+            var vytvoreni = data.map(function(item) {
+                return item.vytvoreni;
+            });
+            var vahy = data.map(function(item) {
+                return item.vaha;
+            });
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: vytvoreni,
+                    datasets: [{
+                        label: 'Váha Yetiho v čase',
+                        data: vahy,
+                        backgroundColor: '#FFA500',
+                        borderColor: '#FFA500',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Datum vytvoření'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Váha (kg)'
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    </body>
+    </html>
+{% endblock %}

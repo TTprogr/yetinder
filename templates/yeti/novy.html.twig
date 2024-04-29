@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nový Yeti{% endblock %}
+
+{% block body %}
+	<h2 class="">Nový Yeti</h2>
+	<div class="mb-3 form-check form-label form-text col-form-label col-sm-2 form-control-lg">
+		{{ form_start(novy_yeti_form) }}
+		{{ form_row(novy_yeti_form.jmeno) }}
+		{{ form_row(novy_yeti_form.vyska) }}
+		{{ form_row(novy_yeti_form.vaha) }}
+		{{ form_row(novy_yeti_form.kozich) }}
+		{{ form_row(novy_yeti_form.adresa) }}
+		{{ form_row(novy_yeti_form.vytvoreni) }}
+		{{ form_end(novy_yeti_form) }}
+	</div>
+	{% for message in app.flashes('message') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+{% endblock %}
